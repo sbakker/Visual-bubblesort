@@ -92,8 +92,8 @@ async function bubblesort(A) {
     var iterations = 0;
     do {
         if (stop_sort) break;
+        nswap = bubble_iteration(A, iterations);
         iterations++;
-        nswap = bubble_iteration(A);
         if (nswap > 0) {
             total_swaps += nswap;
             await sleep(0.01);
@@ -102,9 +102,9 @@ async function bubblesort(A) {
     return { 'iterations' : iterations, 'swaps' : total_swaps };
 }
 
-function bubble_iteration(A) {
+function bubble_iteration(A, iterations) {
     var nswap = 0;
-    for (i = 0; i < A.length-1; i++){
+    for (i = 0; i < A.length-1-iterations; i++){
         if (A[i] > A[i+1]) {
             swap(A, i, i+1);
             nswap++;
